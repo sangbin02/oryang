@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오량 게임 센터</title>
+    <style>
+        h3 {
+            color: #bebebe;
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        body.light-mode .container #description {
+            color: white;
+        }
+
+        .container {
+            max-width: 350px;
+            border-radius: 10px;
+            background-color: black;
+            padding: 20px;
+            box-shadow: 0 0 10px #ffffff;
+            margin-bottom: 20px;
+        }
+
+        #description {
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: block;
+            width: 90%;
+            padding: 10px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            background-color: black;
+            border: 2px solid white;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .button:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .button:active {
+            transform: scale(0.95);
+        }
+
+        #menu {
+            position: fixed;
+            top: 0;
+            left: -200px;
+            width: 200px;
+            height: 100%;
+            background: rgba(159, 158, 158, 0.569);
+            transition: left 0.3s;
+            z-index: 2;
+        }
+
+        #menu ul {
+            list-style: none;
+            padding: 30px;
+        }
+
+        #menu ul li {
+            margin-bottom: 10px;
+        }
+
+        #menu ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        #menuButton {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 3;
+            font-size: 34px;
+        }
+
+        #menuClose {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 3;
+            display: none;
+            font-size: 24px;
+        }
+
+        #toggleSwitch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 19px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        #toggleSwitch:before {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            transition: 0.3s;
+            top: 3%;
+        }
+
+        #toggleSwitch.off:before {
+            transform: translateX(-18px);
+            background-color: rgb(0, 0, 0);
+        }
+
+        #toggleSwitch.on:before {
+            transform: translateX(0px);
+            background-color: rgb(84, 213, 75);
+        }
+
+        body.light-mode {
+            background-color: white;
+            color: black;
+        }
+
+        body.light-mode .button {
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="menu">
+        <ul>
+            <li><a href="templates/page1.html">급식정보</a></li>
+            <li><a href="#">준비중</a></li>
+            <div id="toggleSwitch" class="off"></div>
+        </ul>
+    </div>
+    <div id="menuButton">&#9776;</div>
+    <div id="menuClose">&#10006;</div>
+    <div id="container">
+        <h1>오량 게임 센터</h1>
+        <h3>수업시간에 하기좋은 게임들을 모아봤음</h3>
+        <div class="container">
+            <div id="description">
+                <p>SUIKA GAME</p>
+            </div>
+            <a href="suika.html" class="button" id="button1">게임하기</a>
+        </div>
+        <div class="container">
+            <div id="description">
+                <p>TETRIS</p>
+            </div>
+            <a href="tetris.html" class="button" id="button2">게임하기</a>
+        </div>
+        <div class="container">
+            <div id="description">
+                <p>공룡게임</p>
+            </div>
+            <a href="dino.html" class="button" id="button3">게임하기</a>
+        </div>
+    </div>
+    <script>
+        const menuButton = document.getElementById('menuButton');
+        const menuClose = document.getElementById('menuClose');
+        const menu = document.getElementById('menu');
+        const toggleSwitch = document.getElementById('toggleSwitch');
+    
+        menuButton.addEventListener('click', () => {
+            menu.style.left = '0';
+            menuButton.style.display = 'none';
+            menuClose.style.display = 'block';
+        });
+    
+        menuClose.addEventListener('click', () => {
+            menu.style.left = '-300px';
+            menuButton.style.display = 'block';
+            menuClose.style.display = 'none';
+        });
+    
+        toggleSwitch.addEventListener('click', () => {
+            toggleSwitch.classList.toggle('on');
+            toggleSwitch.classList.toggle('off');
+            document.body.classList.toggle('light-mode');
+        });
+    </script>
+</body>
+</html>
